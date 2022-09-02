@@ -13,6 +13,20 @@
             text-decoration: none;
             color: #000;
         }
+        .card-text{
+            height: 70px;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+        }
+        #categories{
+            font-size: 20px;
+        }
+        .post-img{
+            width: 50px;
+            border-radius: 50%;
+        }
     </style>
 </head>
 <body>
@@ -37,14 +51,13 @@
                 </div>
             </div>
         </nav>
-        <ul id="categories" class="d-flex container justify-content-between mt-3">
+        <ul id="categories" class="container d-flex justify-content-between mt-3">
         
         </ul>
     </header>
     <main class="container">
-        <!-- News Category -->
-        <section class="">
-            
+        <section  class="mt-5">
+            <div id="single-news-category" class="row row-cols-1 row-cols-md-1 g-4"></div>
         </section>
     </main>
 
