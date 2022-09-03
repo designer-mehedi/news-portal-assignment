@@ -6,11 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body{
+            background-color: #fafafa;
+        }
+        nav{
+            border-bottom: 1px solid #dadada;
+        }
+        .card-height{
+            height: 650px;
+        }
+    </style>
 </head>
 <body>
     
-    <header class="">
-        <nav class="navbar navbar-expand-lg bg-white">
+    <header>
+        <nav class="navbar navbar-expand-lg bg-light">
             <div class="container">
                 <a class="navbar-brand" href="#">News Today</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -31,6 +42,69 @@
         </nav>
         <ul id="categories" class="container d-flex justify-content-between mt-3"></ul>
     </header>
+
+    <main class="container">
+        <section class="mb-5">
+            <div class="row row-cols-1 row-cols-md-2 g-4">
+                <div class="col">
+                    <div class="card card-height">
+                        <img src="img/var-vs-let-vs-const-in-javascript.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h4 class="card-title">Var, Let, Const</h4>
+                            <p class="card-text">Variables declared with var is globally scoped. Variable that is declared with var can be accessed outside of scope. But
+                            var is functional scoped. Variables can not be accessed from outside whenever the variable is declared with var inside a
+                            function.
+                            Let is block scoped that means any variable that declared with let can not be accessible outside a block. Variable
+                            values can be reassigned using let. The variable values can be reassigned or reset as new values and can be changed or
+                            modified old values.
+                            Const is also block scoped, but the variable values cannot be reassigned again that means whenever a variable value is
+                            set by const cannot be reassigned again. But the values can be modified or changed old values without reassigning a new
+                            value.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card card-height">
+                        <img src="img/fb5168c1778bf2c15fc07c30434547417a6cf59d-1200x630.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h4 class="card-title">Arrow vs Regular Function</h4>
+                            <p class="card-text">Template literal or template string is used to write multiline sentences without any hassle. We can easily join the long
+                            sentences without using empty string and addition operator. We can also show the sentences as multi rows without adding
+                            any other commands. Template literals also used to calculate one-line mathematical tasks and can also use simple
+                            function within it. It’s a ES6 feature.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card card-height">
+                        <img src="img/2KuSYN_0eSutcsQ00.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h4 class="card-title">Map, ForEach, Filter, Find</h4>
+                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
+                                content.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card card-height">
+                        <img src="img/maxresdefault.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h4 class="card-title">Template Literals</h4>
+                            <p class="card-text">Arrow function is a ES6 feature. It’s also called as fat arrow function. Regular and arrow functions are work similar in
+                            manner but have some certain differences. Both the functions give us the same output, but arrow function uses fewer
+                            lines unlike regular function. Curly brackets are not necessary if one expression is present. Parentheses are also not
+                            required if just one argument is passed in a single parameter. Return keyword is not needed in a simple single line of
+                            code.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p class="text-center">All Rights Reserved || Md Mehedi Hasan Tonmoy</p>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
