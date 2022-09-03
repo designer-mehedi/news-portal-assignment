@@ -29,7 +29,13 @@ const loadNews = async(newsCategory) => {
 }
 
 const displayNewsCategory = (newsPosts) => {
-    // console.log(newsPosts); 
+    const length = newsPosts.length
+    // console.log(length)
+    const lengthField = document.getElementById('length-field')
+    lengthField.value = `${length} News Found`;
+
+
+    console.log(newsPosts); 
     const singleNewsCategory = document.getElementById('single-news-category');
     singleNewsCategory.textContent = '';
     newsPosts.forEach(posts => {
@@ -37,29 +43,32 @@ const displayNewsCategory = (newsPosts) => {
         const postDiv = document.createElement('div');
         postDiv.classList.add('col')
         postDiv.innerHTML = `
-            <div class="card mb-3">
+            <div class="card mb-3 border-0">
                         <div class="row">
-                            <div class="col-md-2 py-3 ps-4">
-                                <img src="${posts.thumbnail_url}" class="img-fluid rounded-start" alt="...">
+                            <div class="col-md-3 py-3 ps-4">
+                                <img src="${posts.thumbnail_url}" class="img-fluid rounded thumb-img" alt="...">
                             </div>
-                            <div class="col-md-10">
+                            <div class="col-md-9">
                                 <div class="card-body">
-                                    <h2 class="card-title">${posts.title}</h2>
+                                    <h4 class="card-title">${posts.title}</h4>
                                     <p class="card-text">${posts.details}</p>
-                                    <div class="d-flex justify-content-between align-items-center mt-5">
-                                        <div class="author-detail d-flex align-items-center">
-                                            <div class="image"><img class="post-img" src="${posts.author.img}"></div>
-                                            <div class="text-content d-flex flex-column ms-2">
-                                                <span>${posts.author.name}</span> 
-                                                <span class="">${posts.author.published_date}</span>
-                                            </div>
-                                        </div>
-                                        <p>${posts.total_view}</p>
-                                        <p>${posts.rating.number} ${posts.rating.badge}</p>
-                                        <button onclick="loadNewsDetails('${posts._id}')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newsDetailModal">Details</button>
+                                    
                                     </div>
                                 </div>
                             </div>
+                            <div class="row px-4 pb-3">
+                                        <div class="d-flex justify-content-between align-items-center mt-5">
+                                        <div class="author-detail d-flex align-items-center">
+                                            <div class="image"><img class="post-img" src="${posts.author.img}"></div>
+                                            <div class="text-content d-flex flex-column ms-2">
+                                                <span>${posts.author.name ? posts.author.name : "No Authors Found"}</span> 
+                                                <span class="">${posts.author.published_date}</span>
+                                            </div>
+                                        </div>
+                                        <p>${posts.total_view ? posts.total_view : 'No views found'}</p>
+                                        <p>${posts.rating.number} ${posts.rating.badge}</p>
+                                        <button onclick="loadNewsDetails('${posts._id}')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newsDetailModal">Details</button>
+                                    </div>
                         </div>
                     </div>
         `; 
@@ -79,7 +88,7 @@ const displayNewsDetails = newsDetails => {
     const modalTitle = document.getElementById('newsDetailModalLabel')
     const details = document.getElementById('details')
     newsDetails.forEach(detail => {
-        console.log(detail); 
+        // console.log(detail); 
         modalTitle.innerText = detail.title;
         details.innerHTML = `
             <img class="w-100" src="${detail.image_url}">
