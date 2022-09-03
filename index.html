@@ -6,6 +6,9 @@
     <title>News Today</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
+        body{
+            background-color: #fafafa;
+        }
         ul{
             list-style: none;
         }
@@ -26,6 +29,17 @@
         .post-img{
             width: 50px;
             border-radius: 50%;
+        }
+        .details{
+            height: 100px;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+        }
+        #length-field{
+            outline: none;
+            border: none;
         }
     </style>
 </head>
@@ -51,13 +65,37 @@
                 </div>
             </div>
         </nav>
-        <ul id="categories" class="container d-flex justify-content-between mt-3">
-        
-        </ul>
+        <ul id="categories" class="container d-flex justify-content-between mt-3"></ul>
     </header>
     <main class="container">
+        <section class="">
+            <input class="w-100 shadow-sm py-2 px-3" type="text" name="" id="length-field">
+        </section>
         <section  class="mt-5">
             <div id="single-news-category" class="row row-cols-1 row-cols-md-1 g-4"></div>
+        </section>
+        <!-- Modal -->
+        <section>
+
+           
+            
+            <div class="modal fade" id="newsDetailModal" tabindex="-1" aria-labelledby="newsDetailModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="newsDetailModalLabel"></h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div id="details" class="modal-body">
+                            ...
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
 

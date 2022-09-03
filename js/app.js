@@ -55,15 +55,37 @@ const displayNewsCategory = (newsPosts) => {
                                             </div>
                                         </div>
                                         <p>${posts.total_view}</p>
-                                        <button class="btn btn-primary">Details</button>
+                                        <p>${posts.rating.number} ${posts.rating.badge}</p>
+                                        <button onclick="loadNewsDetails('${posts._id}')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newsDetailModal">Details</button>
                                     </div>
-                                    
                                 </div>
                             </div>
                         </div>
                     </div>
         `; 
         singleNewsCategory.appendChild(postDiv);
+    })
+}
+
+const loadNewsDetails = async(id) => {
+    const url = `https://openapi.programming-hero.com/api/news/${id}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    displayNewsDetails(data.data);  
+}
+
+const displayNewsDetails = newsDetails => {
+    // console.log(newsDetails); 
+    const modalTitle = document.getElementById('newsDetailModalLabel')
+    const details = document.getElementById('details')
+    newsDetails.forEach(detail => {
+        console.log(detail); 
+        modalTitle.innerText = detail.title;
+        details.innerHTML = `
+            <img class="w-100" src="${detail.image_url}">
+            <p>Published: ${detail.author.published_date}</p>
+            <p class="details">${detail.details}</p>
+        `;
     })
 }
 
