@@ -29,6 +29,12 @@ const loadNews = async(newsCategory) => {
 }
 
 const displayNewsCategory = (newsPosts) => {
+
+    newsPosts.sort(function (a, b) {
+        if (b.total_view < a.total_view) return -1;
+        if (b.total_view > a.total_view) return 1; return 0;
+    })
+
     const length = newsPosts.length
     // console.log(length)
     const lengthField = document.getElementById('length-field')
