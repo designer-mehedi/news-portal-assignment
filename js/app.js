@@ -1,35 +1,51 @@
 const loadNewsCategories = async() => {
+    
     const url = `https://openapi.programming-hero.com/api/news/categories`;
-    const res = await fetch(url);
-    const data = await res.json();
-    displayNewsCategories(data.data.news_category); 
+    try{
+        const res = await fetch(url);
+        const data = await res.json();
+        displayNewsCategories(data.data.news_category);
+    } 
+    catch (error) {
+        console.log(error); 
+    }
 }
 
-const displayNewsCategories = (newsCategories) => {
+const displayNewsCategories = newsCategories => {
     // console.log(newsCategories);
     newsCategories.sort(function (a, b) {
         if(a.category_name < b.category_name) return -1;
         if(a.category_name > b.category_name) return 1; return 0;
     })
     const categories = document.getElementById('categories'); 
+    
     newsCategories.forEach(news => {
-        // console.log(news);
+        
+        console.log(news);
         const categoryList = document.createElement('li');
         // categoryList.classList.add('me-5','pe-4')
-        categoryList.innerHTML = `<a onclick="loadNews('${news.category_id}')" class="active" href="#">${news.category_name}</a>`;
+        categoryList.innerHTML = `<a onclick="loadNewsPosts('${news.category_id}')" class="active" href="#">${news.category_name}</a>`;
         categories.appendChild(categoryList); 
     })
+    // toggleSpinner(true);
 }
 
-const loadNews = async(newsCategory) => {
+const loadNewsPosts = async(newsCategory) => {
+    toggleSpinner(true)
     const url = `https://openapi.programming-hero.com/api/news/category/${newsCategory}`; 
-    const res = await fetch(url);
-    const data = await res.json();
-    displayNewsCategory(data.data);
+    try{
+        const res = await fetch(url);
+        const data = await res.json();
+        displayNewsPosts(data.data);
+    }
+    catch (error) {
+        console.log(error)
+    }
+    
 }
 
-const displayNewsCategory = (newsPosts) => {
-
+const displayNewsPosts = newsPosts => { 
+    
     newsPosts.sort(function (a, b) {
         if (b.total_view < a.total_view) return -1;
         if (b.total_view > a.total_view) return 1; return 0;
@@ -39,7 +55,7 @@ const displayNewsCategory = (newsPosts) => {
     // console.log(length)
     const lengthField = document.getElementById('length-field')
     lengthField.value = `${length} News Found`;
-
+    
 
     console.log(newsPosts); 
     const singleNewsCategory = document.getElementById('single-news-category');
@@ -80,13 +96,28 @@ const displayNewsCategory = (newsPosts) => {
         `; 
         singleNewsCategory.appendChild(postDiv);
     })
+    toggleSpinner(false);
+}
+
+const toggleSpinner = isLoading => {
+    const loadSpinner = document.getElementById('spinner')
+    if (isLoading) {
+        loadSpinner.classList.remove('d-none')
+    } else {
+        loadSpinner.classList.add('d-none')
+    }
 }
 
 const loadNewsDetails = async(id) => {
     const url = `https://openapi.programming-hero.com/api/news/${id}`;
-    const res = await fetch(url);
-    const data = await res.json();
-    displayNewsDetails(data.data);  
+    try{
+        const res = await fetch(url);
+        const data = await res.json();
+        displayNewsDetails(data.data); 
+    }
+    catch (error) {
+        console.log(error); 
+    }
 }
 
 const displayNewsDetails = newsDetails => {
