@@ -47,7 +47,7 @@ const displayNewsPosts = newsPosts => {
     const lengthField = document.getElementById('length-field');
     lengthField.value = `${length} News Found`;
 
-    const singleNewsCategory = document.getElementById('single-news-category');
+    const singleNewsCategory = document.getElementById('single-news-post');
     singleNewsCategory.textContent = '';
     newsPosts.forEach(posts => {
         const postDiv = document.createElement('div');
@@ -124,7 +124,7 @@ const displayNewsDetails = newsDetails => {
         modalTitle.innerText = detail.title;
         details.innerHTML = `
             <img class="w-100" src="${detail.image_url}">
-            <p>Published: ${detail.author.published_date}</p>
+            <p class="pt-3">Published: ${detail.author.published_date}</p>
             <p class="details">${detail.details}</p>
         `;
     })
