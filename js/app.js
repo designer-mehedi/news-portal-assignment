@@ -1,5 +1,4 @@
 const loadNewsCategories = async() => {
-    
     const url = `https://openapi.programming-hero.com/api/news/categories`;
     try{
         const res = await fetch(url);
@@ -12,22 +11,17 @@ const loadNewsCategories = async() => {
 }
 
 const displayNewsCategories = newsCategories => {
-    // console.log(newsCategories);
     newsCategories.sort(function (a, b) {
         if(a.category_name < b.category_name) return -1;
         if(a.category_name > b.category_name) return 1; return 0;
     })
+
     const categories = document.getElementById('categories'); 
-    
     newsCategories.forEach(news => {
-        
-        console.log(news);
         const categoryList = document.createElement('li');
-        // categoryList.classList.add('me-5','pe-4')
         categoryList.innerHTML = `<a onclick="loadNewsPosts('${news.category_id}')" class="active" href="#">${news.category_name}</a>`;
         categories.appendChild(categoryList); 
     })
-    // toggleSpinner(true);
 }
 
 const loadNewsPosts = async(newsCategory) => {
@@ -40,28 +34,22 @@ const loadNewsPosts = async(newsCategory) => {
     }
     catch (error) {
         console.log(error)
-    }
-    
+    } 
 }
 
 const displayNewsPosts = newsPosts => { 
-    
     newsPosts.sort(function (a, b) {
         if (b.total_view < a.total_view) return -1;
         if (b.total_view > a.total_view) return 1; return 0;
     })
 
-    const length = newsPosts.length
-    // console.log(length)
-    const lengthField = document.getElementById('length-field')
+    const length = newsPosts.length;
+    const lengthField = document.getElementById('length-field');
     lengthField.value = `${length} News Found`;
-    
 
-    console.log(newsPosts); 
     const singleNewsCategory = document.getElementById('single-news-category');
     singleNewsCategory.textContent = '';
     newsPosts.forEach(posts => {
-        console.log(posts)
         const postDiv = document.createElement('div');
         postDiv.classList.add('col')
         postDiv.innerHTML = `
@@ -82,7 +70,7 @@ const displayNewsPosts = newsPosts => {
                     <div class="image"><img class="post-img" src="${posts.author.img}"></div>
                     <div class="text-content d-flex flex-column ms-2">
                         <span>${posts.author.name ? posts.author.name : "No Authors Found"}</span>
-                        <span class="">${posts.author.published_date}</span>
+                        <span class="">${posts.author.published_date? posts.author.published_date : 'No Publish Date Found'}</span>
                     </div>
                     <div class="d-flex align-items-center">
                         <span class="icon"><ion-icon name="eye"></ion-icon> </span>
@@ -130,11 +118,9 @@ const loadNewsDetails = async(id) => {
 }
 
 const displayNewsDetails = newsDetails => {
-    // console.log(newsDetails); 
     const modalTitle = document.getElementById('newsDetailModalLabel')
     const details = document.getElementById('details')
-    newsDetails.forEach(detail => {
-        // console.log(detail); 
+    newsDetails.forEach(detail => { 
         modalTitle.innerText = detail.title;
         details.innerHTML = `
             <img class="w-100" src="${detail.image_url}">
